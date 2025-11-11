@@ -30,33 +30,6 @@ Each simulation resolves the coupled dynamics of **momentum transport**, **therm
 
 ---
 
-## 📂 Repository Organization
-
-├── before-jet/                  # Upstream reference and inflow statistics
-│   ├── mean-velocity
-│   ├── mean-temperature
-│   ├── velocity-fluctuations
-│   └── temperature-fluctuations
-│
-├── after-jet/                   # Downstream (plume) region statistics
-│   ├── velocity
-│   ├── temperature
-│   ├── reynolds-stress
-│   ├── temperature-fluctuations
-│   └── production-vs-diffusion
-│
-├── wall/                        # Near-wall and surface quantities
-│   ├── adiabatic-effectiveness
-│   ├── wall-temperature
-│   ├── friction-coefficient
-│   └── friction-reynolds
-│
-├── maxima/                      # Streamwise maxima of turbulence statistics
-│   ├── max-tau11
-│   └── max-trms
-│
-└── README.md
-
 All data are stored as plain-text (`.txt`) tables with headers, directly readable with **NumPy**, **Matlab**, or **ParaView**.
 
 ---
@@ -68,8 +41,8 @@ All data are stored as plain-text (`.txt`) tables with headers, directly readabl
 | <span>$y^+$</span> | Wall-normal coordinate | <span>$y u_\tau / \nu_w$</span> |
 | <span>$u^+$</span>, <span>$u^+_{\mathrm{VD}}$</span> | Van-Driest–transformed velocity | <span>$\int_0^u \sqrt{\rho / \rho_w}\, du / u_\tau$</span> |
 | <span>$T^*$</span> | Favre-averaged nondimensional temperature | <span>$\tilde{T}/T_\infty$</span> |
-| <span>$\tau_{ij}^+$</span> | Reynolds stresses | <span>$(\rho/\rho_w)\, \widetilde{u_i''u_j''}/u_\tau^2$</span> |
-| <span>$|P/\phi|$</span> | Production–diffusion balance | scaled by <span>$u_\tau^3 \rho_w / \delta_\nu$</span> |
+| <span>$\tau_{ij}^+$</span> | Reynolds stresses | <span>$(\rho/\rho_w) \widetilde{u_i''u_j''}/u_\tau^2$</span> |
+| <span>$P/\phi$</span> | Production–diffusion balance | scaled by <span>$u_\tau^3 \rho_w / \delta_\nu$</span> |
 | <span>$\eta$</span> | Adiabatic effectiveness | <span>$(T_r - T_w)/(T_r - T_c)$</span> |
 
 ---
