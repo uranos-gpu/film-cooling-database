@@ -76,8 +76,8 @@ plt.show()
 
 ---
 
-🧮 Matlab Example
-```matlab
+### 🧮 Matlab Example
+```python
 
 % Load adiabatic effectiveness profile (two-column format)
 data = readmatrix('wall/adiabatic-effectiveness/M16_T075_eta.txt');
