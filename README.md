@@ -1,8 +1,7 @@
 # 🌀 Film-Cooling Database: Highly-Resolved LES of Jet-in-Crossflow Cooling
 
-This repository hosts the **open-access database**:
-
-> [https://github.com/uranos-gpu/film-cooling-database](https://github.com/uranos-gpu/film-cooling-database)
+This repository hosts the **open-access database**:  
+👉 [https://github.com/uranos-gpu/film-cooling-database](https://github.com/uranos-gpu/film-cooling-database)
 
 ---
 
@@ -10,7 +9,7 @@ This repository hosts the **open-access database**:
 
 This database provides **highly-resolved Large-Eddy Simulation (LES)** data for a **canonical round-hole film-cooling configuration**, performed with the open-source GPU solver [**URANOS**](https://github.com/uranos-gpu/uranos-gpu).
 
-The dataset explores the **combined effects of blowing ratio (M)** and **coolant-to-recovery temperature ratio (Tc/Tr)** on the **aerothermal behavior of transonic film-cooling jets**, establishing a modern reference for **model development**, **validation**, and **reduced-order analyses**.
+The dataset explores the **combined effects of blowing ratio** (\( M \)) and **coolant-to-recovery temperature ratio** (\( T_c/T_r \)) on the **aerothermal behavior of transonic film-cooling jets**, establishing a modern reference for **model development**, **validation**, and **reduced-order analyses**.
 
 Each simulation resolves the coupled dynamics of **momentum transport**, **thermal shielding**, and **wall-interacting vortices** that govern jet attachment, lift-off, and effectiveness decay.
 
@@ -23,11 +22,11 @@ Each simulation resolves the coupled dynamics of **momentum transport**, **therm
 | Freestream Mach number | \( M_\infty \) | 0.8, 1.2, 1.6 |
 | Coolant-to-recovery temperature ratio | \( T_c/T_r \) | 0.50, 0.75 |
 | Wall condition | — | Adiabatic |
-| Geometry | — | Flat plate, single round hole, 35° inclination |
-| Domain extent | \( x^* = -40 \rightarrow 80 \), \( y/h = 15 \), \( z/h = 8 \) |
+| Geometry | — | Flat plate, single round hole, 30° inclination |
+| Domain extent | \( x/\delta = -50 \rightarrow 100 \), \( y/h = 20 \), \( z/h = 10 \) |
 | Grid resolution | — | \( 2000 \times 384 \times 128 \) |
 | LES model | — | Highly-resolved LES (WALE subgrid-scale closure) |
-| Code | — | URANOS GPU-accelerated Navier–Stokes solver |
+| Solver | — | URANOS GPU-accelerated Navier–Stokes solver |
 
 ---
 
@@ -52,13 +51,13 @@ Each simulation resolves the coupled dynamics of **momentum transport**, **therm
 │   ├── friction-coefficient
 │   └── friction-reynolds
 │
-├── maxima/                      # Streamwise maxima of turbulent quantities
+├── maxima/                      # Streamwise maxima of turbulence statistics
 │   ├── max-tau11
 │   └── max-trms
 │
 └── README.md
 
-All data are stored as plain-text (`.txt`) tables with headers, readable with **NumPy**, **Matlab**, or **ParaView**.
+All data are stored as plain-text (`.txt`) tables with headers, directly readable with **NumPy**, **Matlab**, or **ParaView**.
 
 ---
 
@@ -69,7 +68,7 @@ All data are stored as plain-text (`.txt`) tables with headers, readable with **
 | \( y^+ \) | Wall-normal coordinate | \( y u_\tau / \nu_w \) |
 | \( u^+ \), \( u^+_{\mathrm{VD}} \) | Van-Driest–transformed velocity | \( \int_0^u \sqrt{\rho / \rho_w}\, du / u_\tau \) |
 | \( T^* \) | Favre-averaged nondimensional temperature | \( \tilde{T}/T_\infty \) |
-| \( \tau_{ij}^+ \) | Reynolds stresses | \( \tilde{u_i''u_j''} / u_\tau^2 \) |
+| \( \tau_{ij}^+ \) | Reynolds stresses | \( (\rho/\rho_w)\, \widetilde{u_i''u_j''}/u_\tau^2 \) |
 | \( |P/\phi| \) | Production–diffusion balance | scaled by \( u_\tau^3 \rho_w / \delta_\nu \) |
 | \( \eta \) | Adiabatic effectiveness | \( (T_r - T_w)/(T_r - T_c) \) |
 
@@ -77,19 +76,17 @@ All data are stored as plain-text (`.txt`) tables with headers, readable with **
 
 ## 🔬 Physical Insights
 
-The simulations reveal:
+- **Transition from buoyancy- to momentum-controlled regimes**  
+  Cold jets (\( T_c/T_r = 0.5 \)) remain attached and dense, reducing wall shear.  
+  Warm jets or high blowing ratios lift off, dominated by jet momentum and entrainment.
 
-- **Transition from buoyancy- to momentum-controlled regimes**:  
-  For cold jets (\( T_c/T_r = 0.5 \)), the film remains attached and dense, suppressing wall shear.  
-  For warm jets or high blowing ratios, lift-off occurs, dominated by jet momentum and entrainment.
+- **Four-vortex topology in mean vorticity**  
+  A counter-rotating vortex pair (CVP) governs vertical and lateral entrainment, while two wall-attached vortices redistribute coolant near the surface, controlling wall coverage.
 
-- **Four-vortex topology** in the mean vorticity field:  
-  A central counter-rotating vortex pair (CVP) drives inner/outer motion, while two wall-attached vortices laterally redistribute coolant, controlling wall coverage.
+- **Spectral behavior**  
+  Transonic regimes exhibit strong low-frequency oscillations in wall-pressure spectra and enhanced shear-layer energy ridges, characteristic of periodic jet lift-off and reattachment.
 
-- **Spectral signatures**:  
-  Transonic cases exhibit enhanced low-frequency content in wall-pressure spectra and an outer shear-layer energy ridge—trends consistent with increased jet penetration and unsteady lift-off.
-
-These findings define a **transonic benchmark** for film cooling, bridging mean trends and spectral dynamics.
+These findings provide a **benchmark for transonic film-cooling flows**, linking wall protection, jet entrainment, and turbulence structure.
 
 ---
 
@@ -116,6 +113,9 @@ If you use this database, please cite:
 
 🧠 Acknowledgments
 
+Computations were performed on the CONVECS HPC infrastructure
+(COmuNità VEneta per il Calcolo Scientifico, https://convecs.it)
+under the ATLAS and ECO-TACTIC projects.
 Support from CINECA ISCRA Grants, NVIDIA, and the University of Padova – DII is gratefully acknowledged.
 
 ⸻
@@ -123,5 +123,5 @@ Support from CINECA ISCRA Grants, NVIDIA, and the University of Padova – DII i
 📄 License
 
 Released under the MIT License.
-Data may be used freely for academic and educational purposes with proper citation.
+Data may be freely used for academic and educational purposes with proper citation.
 
