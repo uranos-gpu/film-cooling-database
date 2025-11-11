@@ -1,11 +1,3 @@
-Got it — GitHub’s Markdown renderer does not support inline LaTeX syntax \( ... \) or $$ ... $$ natively.
-To display perfect math symbols online, you must use HTML + MathJax formatting (GitHub now supports MathJax automatically if math is enclosed in <img> or <span> tags).
-
-Here’s your fully fixed, ready-to-paste README.md version that renders perfect LaTeX online on GitHub and still looks elegant in plaintext editors.
-
-⸻
-
-
 # 🌀 Film-Cooling Database: Highly-Resolved LES of Jet-in-Crossflow Cooling
 
 This repository hosts the **open-access database**:  
@@ -31,7 +23,7 @@ Each simulation resolves the coupled dynamics of **momentum transport**, **therm
 | Coolant-to-recovery temperature ratio | <span>$T_c/T_r$</span> | 0.50, 0.75 |
 | Wall condition | — | Adiabatic |
 | Geometry | — | Flat plate, single round hole, 30° inclination |
-| Domain extent | <span>$x/\delta = -50 \rightarrow 100$</span>, <span>$y/h = 20$</span>, <span>$z/h = 10$</span> |
+| Domain extent | <span>$x/\delta$</span> = -50:100, <span>$y/\delta = 20$</span>, <span>$z/h = 10$</span> |
 | Grid resolution | — | <span>$2000 \times 384 \times 128$</span> |
 | LES model | — | Highly-resolved LES (WALE subgrid-scale closure) |
 | Solver | — | URANOS GPU-accelerated Navier–Stokes solver |
@@ -117,18 +109,10 @@ yplus = data(:,1); eta = data(:,2);
 
 If you use this database, please cite:
 
-F. De Vanna, G. Baldan, E. Benini
-High-Fidelity LES of Film-Cooling Jets: Coupled Dynamics of Momentum and Heat Transfer
-AIAA Journal, under review (2025).
-DOI: to be assigned upon publication.
-
 ⸻
 
 🧠 Acknowledgments
 
-Computations were performed on the CONVECS HPC infrastructure
-(COmuNità VEneta per il Calcolo Scientifico, https://convecs.it￼)
-under the ATLAS and ECO-TACTIC projects.
 Support from CINECA ISCRA Grants, NVIDIA, and the University of Padova – DII is gratefully acknowledged.
 
 ⸻
@@ -138,8 +122,3 @@ Support from CINECA ISCRA Grants, NVIDIA, and the University of Padova – DII i
 Released under the MIT License.
 Data may be freely used for academic and educational purposes with proper citation.
 
----
-
-✅ **Explanation**  
-This version uses `<span>$ ... $</span>` syntax, which **GitHub renders via MathJax automatically**.  
-You’ll now see perfectly formatted LaTeX (e.g., `M_\infty`, `T_c/T_r`, `u_\tau`) when viewed online, not raw underscores.
