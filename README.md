@@ -47,34 +47,50 @@ All data are stored as plain-text (`.txt`) tables with headers, directly readabl
 
 ---
 
-## 🔬 Physical Insights
-
-- **Transition from buoyancy- to momentum-controlled regimes**  
-  Cold jets (<span>$T_c/T_r = 0.5$</span>) remain attached and dense, reducing wall shear.  
-  Warm jets or high blowing ratios lift off, dominated by jet momentum and entrainment.
-
-- **Four-vortex topology in mean vorticity**  
-  A counter-rotating vortex pair (CVP) governs vertical and lateral entrainment, while two wall-attached vortices redistribute coolant near the surface, controlling wall coverage.
-
-- **Spectral behavior**  
-  Transonic regimes exhibit strong low-frequency oscillations in wall-pressure spectra and enhanced shear-layer energy ridges, characteristic of periodic jet lift-off and reattachment.
-
-These findings provide a **benchmark for transonic film-cooling flows**, linking wall protection, jet entrainment, and turbulence structure.
-
----
 
 ## 💾 Example Usage
 
-### Python
+Below are quick examples showing how to load and visualize the database profiles using **Python** or **Matlab**.
+All `.txt` files follow a consistent structure with a descriptive header and two or more columns.
+
+---
+
+### 🐍 Python Example
 ```python
 import numpy as np
+import matplotlib.pyplot as plt
+
+# Load wall-friction coefficient distribution (two-column format)
 yplus, cf = np.loadtxt("wall/friction-coefficient/M12_T05_cf.txt", unpack=True)
 
-Matlab
+# Quick plot
+plt.figure(figsize=(5,4))
+plt.plot(yplus, cf, '-o', markersize=4, color='navy', label='M=1.2, Tc/Tr=0.5')
+plt.xlabel(r"$y^+ = y u_\tau / \nu_w$")
+plt.ylabel(r"$c_f = \tau_w / q_\infty$")
+plt.grid(True, which='both', linestyle='--', alpha=0.4)
+plt.legend()
+plt.tight_layout()
+plt.show()
 
+
+⸻
+
+🧮 Matlab Example
+
+% Load adiabatic effectiveness profile (two-column format)
 data = readmatrix('wall/adiabatic-effectiveness/M16_T075_eta.txt');
-yplus = data(:,1); eta = data(:,2);
 
+yplus = data(:,1);
+eta   = data(:,2);
+
+% Quick plot
+figure('Color','w');
+plot(yplus, eta, 'r-o', 'MarkerFaceColor','w', 'LineWidth',1.2);
+xlabel('$y^+ = y u_\tau / \nu_w$', 'Interpreter','latex');
+ylabel('$\eta = (T_r - T_w)/(T_r - T_c)$', 'Interpreter','latex');
+grid on; box on;
+title('Adiabatic Effectiveness – M=1.6, T_c/T_r=0.75');
 
 ⸻
 
