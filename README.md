@@ -23,7 +23,7 @@ Each simulation resolves the coupled dynamics of **momentum transport**, **therm
 | Coolant-to-recovery temperature ratio | <span>$T_c/T_r$</span> | 0.50, 0.75 |
 | Wall condition | — | Adiabatic |
 | Geometry | — | Flat plate, single round hole, 30° inclination |
-| Domain extent | <span>$x/\delta$</span> = -50:100, <span>$y/\delta = 20$</span>, <span>$z/h = 10$</span> |
+| Domain extent | <span>$x/$</span>, <span>$y$</span>, <span>$z$</span> | 50:100, 0:20, -5:5
 | Grid resolution | — | <span>$2000 \times 384 \times 128$</span> |
 | LES model | — | Highly-resolved LES (WALE subgrid-scale closure) |
 | Solver | — | URANOS GPU-accelerated Navier–Stokes solver |
