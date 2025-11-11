@@ -74,9 +74,10 @@ plt.tight_layout()
 plt.show()
 
 
-⸻
+---
 
 🧮 Matlab Example
+```matlab
 
 % Load adiabatic effectiveness profile (two-column format)
 data = readmatrix('wall/adiabatic-effectiveness/M16_T075_eta.txt');
@@ -92,7 +93,7 @@ ylabel('$\eta = (T_r - T_w)/(T_r - T_c)$', 'Interpreter','latex');
 grid on; box on;
 title('Adiabatic Effectiveness – M=1.6, T_c/T_r=0.75');
 
-⸻
+---
 
 📘 Citation
 
