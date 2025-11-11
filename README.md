@@ -42,7 +42,7 @@ All data are stored as plain-text (`.txt`) tables with headers, directly readabl
 | <span>$u^+$</span>, <span>$u^+_{\mathrm{VD}}$</span> | Van-Driest–transformed velocity | <span>$\int_0^u \sqrt{\rho / \rho_w}\, du / u_\tau$</span> |
 | <span>$T^*$</span> | Favre-averaged nondimensional temperature | <span>$\tilde{T}/T_\infty$</span> |
 | <span>$\tau_{ij}^+$</span> | Reynolds stresses | <span>$(\rho/\rho_w) \widetilde{u_i''u_j''}/u_\tau^2$</span> |
-| <span>$P/\phi$</span> | Production–diffusion balance | scaled by <span>$u_\tau^3 \rho_w / \delta_\nu$</span> |
+| <span>$P|\phi$</span> | Production–diffusion balance | scaled by <span>$u_\tau^3 \rho_w / \delta_\nu$</span> |
 | <span>$\eta$</span> | Adiabatic effectiveness | <span>$(T_r - T_w)/(T_r - T_c)$</span> |
 
 ---
