@@ -1,151 +1,114 @@
-# 📘 Film-Cooling Database — High-Fidelity LES (URANOS-GPU)
+# 🌀 Film-Cooling Database: Highly-Resolved LES of Jet-in-Crossflow Cooling
 
-This repository provides an **open-access database** of high-fidelity **Large-Eddy Simulations (LES)** for a **canonical round-hole film-cooling jet in crossflow**, performed using **URANOS**, a high-order, GPU-accelerated solver for compressible flows.
-
-The dataset isolates the coupled role of **momentum**, **buoyancy**, and **temperature ratio** in shaping jet attachment and lift-off, offering a modern benchmark for:
-- turbulence-model development (RANS, LES, WMLES),
-- validation studies,
-- reduced-order modelling,
-- canonical comparisons across blowing and temperature ratios.
+This repository hosts the **open-access database**:  
+👉 [https://github.com/uranos-gpu/film-cooling-database](https://github.com/uranos-gpu/film-cooling-database)
 
 ---
 
-## 📁 Repository Structure
+## 🧩 Overview
 
-```
-film-cooling-database/
-├── wall/
-│   ├── friction-coefficient/
-│   ├── adiabatic-effectiveness/
-│   └── ...
-├── mean-fields/
-│   ├── velocity/
-│   ├── temperature/
-│   └── ...
-├── jets/
-│   ├── profiles/
-│   └── data/
-└── README.md
-```
+This database provides **highly-resolved Large-Eddy Simulation (LES)** data for a **canonical round-hole film-cooling configuration**, performed with the open-source GPU solver [**URANOS**](https://github.com/uranos-gpu/uranos-gpu).
 
-All files are **plain-text tables** (`.txt`) with headers and can be loaded directly in Python, MATLAB, ParaView, Tecplot, etc.
+The dataset explores the **combined effects of blowing ratio** (<span>$M$</span>) and **coolant-to-recovery temperature ratio** (<span>$T_c/T_r$</span>) on the **aerothermal behavior of transonic film-cooling jets**, establishing a modern reference for **model development**, **validation**, and **reduced-order analyses**.
+
+Each simulation resolves the coupled dynamics of **momentum transport**, **thermal shielding**, and **wall-interacting vortices** that govern jet attachment, lift-off, and effectiveness decay.
 
 ---
 
-## 🧩 Simulation Matrix
+## ⚙️ Simulation Matrix
 
 | Parameter | Symbol | Values |
-|----------|--------|--------|
-| Freestream Mach number | $begin:math:text$M\_\\infty$end:math:text$ | 0.8, 1.2, 1.6 |
-| Coolant temperature ratio | $begin:math:text$T\_c\/T\_r$end:math:text$ | 0.50, 0.75 |
+|:--|:--:|:--|
+| Freestream Mach number | <span>$M_\infty$</span> | 0.8, 1.2, 1.6 |
+| Coolant-to-recovery temperature ratio | <span>$T_c/T_r$</span> | 0.50, 0.75 |
 | Wall condition | — | Adiabatic |
-| Geometry | — | Round hole, 30° inclination |
-| Grid resolution | — | $begin:math:text$2000 \\times 384 \\times 128$end:math:text$ |
-| LES closure | — | WALE |
-| Solver | — | URANOS (GPU-accelerated) |
+| Geometry | — | Flat plate, single round hole, 30° inclination |
+| Domain extent | <span>$x/$</span>, <span>$y$</span>, <span>$z$</span> | 50:100, 0:20, -5:5
+| Grid resolution | — | <span>$2000 \times 384 \times 128$</span> |
+| LES model | — | Highly-resolved LES (WALE subgrid-scale closure) |
+| Solver | — | URANOS GPU-accelerated Navier–Stokes solver |
 
 ---
 
-## 📐 Key Quantities
+All data are stored as plain-text (`.txt`) tables with headers, directly readable with **NumPy**, **Matlab**, or **ParaView**.
+
+---
+
+## 📈 Quantities and Definitions
 
 | Symbol | Description | Normalization |
-|--------|-------------|---------------|
-| $begin:math:text$y\^\+$end:math:text$ | wall-normal coordinate | $begin:math:text$y u\_\\tau\/\\nu\_w$end:math:text$ |
-| $begin:math:text$u\^\+$end:math:text$ | Van-Driest–transformed velocity | $begin:math:text$\\int\_0\^u \\sqrt\{\\rho\/\\rho\_w\}\\\, du \/ u\_\\tau$end:math:text$ |
-| $begin:math:text$T\^\*$end:math:text$ | nondimensional temperature | $begin:math:text$\\tilde\{T\}\/T\_\\infty$end:math:text$ |
-| $begin:math:text$\\tau\_\{ij\}\^\+$end:math:text$ | Reynolds stresses | $begin:math:text$\(\\rho\/\\rho\_w\)\\widetilde\{u\_i\'\'u\_j\'\'\}\/u\_\\tau\^2$end:math:text$ |
-| $begin:math:text$\\eta$end:math:text$ | adiabatic effectiveness | $begin:math:text$\(T\_r \- T\_w\)\/\(T\_r \- T\_c\)$end:math:text$ |
+|:--:|:--|:--|
+| <span>$y^+$</span> | Wall-normal coordinate | <span>$y u_\tau / \nu_w$</span> |
+| <span>$u^+$</span>, <span>$u^+_{\mathrm{VD}}$</span> | Van-Driest–transformed velocity | <span>$\int_0^u \sqrt{\rho / \rho_w}\, du / u_\tau$</span> |
+| <span>$T^*$</span> | Favre-averaged nondimensional temperature | <span>$\tilde{T}/T_\infty$</span> |
+| <span>$\tau_{ij}^+$</span> | Reynolds stresses | <span>$(\rho/\rho_w) \widetilde{u_i''u_j''}/u_\tau^2$</span> |
+| <span>$P|\phi$</span> | Production–diffusion balance | scaled by <span>$u_\tau^3 \rho_w / \delta_\nu$</span> |
+| <span>$\eta$</span> | Adiabatic effectiveness | <span>$(T_r - T_w)/(T_r - T_c)$</span> |
 
 ---
 
-## 📊 Usage Examples
 
-### Python
+## 💾 Example Usage
 
+Below are quick examples showing how to load and visualize the database profiles using **Python** or **Matlab**.
+All `.txt` files follow a consistent structure with a descriptive header and two or more columns.
+
+---
+
+### 🐍 Python Example
 ```python
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Load a sample wall-friction profile
+# Load wall-friction coefficient distribution (two-column format)
 yplus, cf = np.loadtxt("wall/friction-coefficient/M12_T05_cf.txt", unpack=True)
 
-plt.plot(yplus, cf, "-o", markersize=4)
-plt.xlabel(r"$y^+$")
-plt.ylabel(r"$c_f$")
-plt.grid(True)
+# Quick plot
+plt.figure(figsize=(5,4))
+plt.plot(yplus, cf, '-o', markersize=4, color='navy', label='M=1.2, Tc/Tr=0.5')
+plt.xlabel(r"$y^+ = y u_\tau / \nu_w$")
+plt.ylabel(r"$c_f = \tau_w / q_\infty$")
+plt.grid(True, which='both', linestyle='--', alpha=0.4)
+plt.legend()
+plt.tight_layout()
 plt.show()
-```
 
-### MATLAB
 
-```matlab
-data = readmatrix("wall/adiabatic-effectiveness/M16_T075_eta.txt");
+---
+
+### 🧮 Matlab Example
+```python
+
+% Load adiabatic effectiveness profile (two-column format)
+data = readmatrix('wall/adiabatic-effectiveness/M16_T075_eta.txt');
+
 yplus = data(:,1);
 eta   = data(:,2);
 
-plot(yplus, eta, 'r-o', 'MarkerFaceColor','w');
-xlabel('$y^+$','Interpreter','latex');
-ylabel('$\eta$','Interpreter','latex');
-grid on;
-```
+% Quick plot
+figure('Color','w');
+plot(yplus, eta, 'r-o', 'MarkerFaceColor','w', 'LineWidth',1.2);
+xlabel('$y^+ = y u_\tau / \nu_w$', 'Interpreter','latex');
+ylabel('$\eta = (T_r - T_w)/(T_r - T_c)$', 'Interpreter','latex');
+grid on; box on;
+title('Adiabatic Effectiveness – M=1.6, T_c/T_r=0.75');
 
 ---
 
-## 🔍 Why This Database?
+📘 Citation
 
-This resource provides:
+If you use this database, please cite:
 
-- **High-resolution LES** of a **canonical** film-cooling configuration.  
-- **Systematic parameter variation** (blowing ratio + temperature ratio).  
-- Clean **plain-text data** for maximally easy ingestion.  
-- A **baseline benchmark** for:
-  - turbulence modelling,
-  - WMLES tuning,
-  - heat-transfer studies,
-  - RANS/LES comparison,
-  - reduced-order model calibration.
+⸻
 
-The goal is to offer a transparent, reusable, engine-relevant dataset for the research community.
+🧠 Acknowledgments
 
----
+Support from CINECA ISCRA Grants, NVIDIA, and the University of Padova – DII is gratefully acknowledged.
 
-## 📥 Download
+⸻
 
-Clone the repo:
+📄 License
 
-```bash
-git clone https://github.com/uranos-gpu/film-cooling-database
-```
+Released under the MIT License.
+Data may be freely used for academic and educational purposes with proper citation.
 
-or download the dataset via the GitHub “Download ZIP” button.
-
----
-
-## 📖 Citation
-
-To be appeared...
-
----
-
-## 🙏 Acknowledgements
-
-Supported by:
-- **CINECA ISCRA HPC Grants**
-- **NVIDIA Academic Hardware Grant**
-- **Department of Industrial Engineering — University of Padova**
-
----
-
-## 📄 License
-
-Released under the **MIT License**.  
-Free for academic and educational use **with proper citation**.
-
----
-
-## 🛠 Contributing
-
-Issues, questions, suggestions, and pull requests are welcome — especially contributions related to:
-- post-processing scripts,
-- visualization tools,
-- additional derived fields.
