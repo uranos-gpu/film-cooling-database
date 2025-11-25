@@ -27,7 +27,7 @@ Each simulation resolves the coupled dynamics of **momentum transport**, **therm
 
 | Parameter | Symbol | Values |
 |:--|:--:|:--|
-| Freestream Mach number | <span>$M_\infty$</span> | 0.8, 1.2, 1.6 |
+| Blowing ratio | <span>$M_\infty$</span> | 0.8, 1.2, 1.6 |
 | Coolant-to-recovery temperature ratio | <span>$T_c/T_r$</span> | 0.50, 0.75 |
 | Wall condition | — | Adiabatic |
 | Geometry | — | Flat plate, single round hole, 30° inclination |
