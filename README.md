@@ -1,9 +1,17 @@
 # 🌀 Film-Cooling Database: Highly-Resolved LES of Jet-in-Crossflow Cooling
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17711513.svg)](https://doi.org/10.5281/zenodo.17711513)
+
 This repository hosts the **open-access database**:  
-👉 [https://github.com/uranos-gpu/film-cooling-database](https://github.com/uranos-gpu/film-cooling-database)
+👉 https://github.com/uranos-gpu/film-cooling-database
+
+
 
 ---
+
+
+
+
 
 ## 🧩 Overview
 
