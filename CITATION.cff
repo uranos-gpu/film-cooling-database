@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "If you use this film-cooling LES database, please cite the following record."
+version: 1.0.0
+doi: 10.5281/zenodo.17711513
+date-released: 2025-11-11
+
+authors:
+  - family-names: "De Vanna"
+    given-names: "Francesco"
+    affiliation: "Department of Industrial Engineering, University of Padova"
+    orcid: "https://orcid.org/0000-0001-6627-5451"
+
+repository-code: "https://github.com/uranos-gpu/film-cooling-database"
+url: "https://github.com/uranos-gpu/film-cooling-database"
+
+
+keywords:
+  - film cooling
+  - jet in crossflow
+  - transonic boundary layer
+  - LES
+  - GPU computing
+  - URANOS
+  - aerothermal analysis
+  - high-fidelity simulation
+  - turbulence modeling
+  - open science
