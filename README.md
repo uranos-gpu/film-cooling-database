@@ -107,7 +107,8 @@ title('Adiabatic Effectiveness – M=1.6, T_c/T_r=0.75');
 
 If you use this database, please cite:
 
-Francesco De Vanna. (2025). uranos-gpu/film-cooling-database: v1.0 (v1.0). Zenodo. https://doi.org/10.5281/zenodo.17711514
+Francesco De Vanna. (2025). uranos-gpu/film-cooling-database: v1.0 (v1.0). 
+Zenodo. https://doi.org/10.5281/zenodo.17711514
 
 ⸻
 
